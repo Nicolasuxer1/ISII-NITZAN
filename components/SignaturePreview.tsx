@@ -15,7 +15,7 @@ const generateSignatureHTML = (data: SignatureData) => {
   
   const websiteLink = "https://www.greenspec.nls";
   // Fixed Greenspec horizontal logo
-  const fixedLogoUrl = "https://cdn.sanity.io/images/1e0st73j/production/68361ba9e6303c7b427ff1f9b9f8d81a68e8a523-150x30.svg";
+  const fixedLogoUrl = "https://download.logo.wine/logo/Binance/Binance-Logo.wine.png";
   const LOGO_WIDTH = 150; // px
   const LOGO_HEIGHT = 32;
 

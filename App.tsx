@@ -19,12 +19,12 @@ const App: React.FC = () => {
       <header className="bg-white border-b border-slate-200 py-6">
         <div className="container mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="bg-emerald-600 w-10 h-10 rounded-xl shadow-emerald-200 shadow-lg flex items-center justify-center text-white font-black text-2xl">
+            <div style={{ backgroundColor: '#2dab65' }} className="w-10 h-10 rounded-xl shadow-lg flex items-center justify-center text-white font-black text-2xl">
               G
             </div>
             <div>
               <h1 className="text-xl font-bold text-slate-900 tracking-tight">Greenspec</h1>
-              <p className="text-xs text-emerald-600 font-semibold uppercase tracking-wider">Signature Generator</p>
+              <p style={{ color: '#2dab65' }} className="text-xs font-semibold uppercase tracking-wider">Signature Generator</p>
             </div>
           </div>
         </div>
@@ -35,7 +35,7 @@ const App: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">
-              <span className="text-emerald-600 underline decoration-emerald-200 underline-offset-8">Greenspec</span> Email Signature Generator
+              <span style={{ color: '#2dab65' }} className="underline decoration-[#2dab65]/20 underline-offset-8">Greenspec</span> Email Signature Generator
             </h2>
             <p className="text-slate-500 max-w-xl mx-auto text-lg">
               Create your standardized professional signature in seconds.
@@ -57,22 +57,22 @@ const App: React.FC = () => {
           {/* Instructions Section */}
           <section className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
             <h3 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <i className="ri-list-check-3 text-emerald-600"></i>
+              <i style={{ color: '#2dab65' }} className="ri-list-check-3"></i>
               How to use this tool?
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="space-y-3">
-                <div className="w-10 h-10 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center font-bold">1</div>
+                <div style={{ backgroundColor: '#eaf7f0', color: '#2dab65' }} className="w-10 h-10 rounded-full flex items-center justify-center font-bold">1</div>
                 <h4 className="font-bold text-slate-800">Fill your information</h4>
                 <p className="text-sm text-slate-500">Enter your professional details. The preview updates automatically as you type.</p>
               </div>
               <div className="space-y-3">
-                <div className="w-10 h-10 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center font-bold">2</div>
+                <div style={{ backgroundColor: '#eaf7f0', color: '#2dab65' }} className="w-10 h-10 rounded-full flex items-center justify-center font-bold">2</div>
                 <h4 className="font-bold text-slate-800">Copy the signature</h4>
                 <p className="text-sm text-slate-500">Click the <strong>"Copy Signature"</strong> button. The formatted signature is saved to your clipboard.</p>
               </div>
               <div className="space-y-3">
-                <div className="w-10 h-10 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center font-bold">3</div>
+                <div style={{ backgroundColor: '#eaf7f0', color: '#2dab65' }} className="w-10 h-10 rounded-full flex items-center justify-center font-bold">3</div>
                 <h4 className="font-bold text-slate-800">Paste in Outlook</h4>
                 <p className="text-sm text-slate-500">Open your email settings and use <strong>Ctrl+V</strong> to paste the signature directly.</p>
               </div>

@@ -13,7 +13,7 @@ const generateSignatureHTML = (data: SignatureData) => {
   const brandGreen = "#2dab65";
   const textColor = "#475569";
   
-  const websiteLink = "https://www.greenspec.nls";
+  const websiteLink = "https://www.greenspec.nl";
   // Fixed Greenspec horizontal logo
   const fixedLogoUrl = "https://raw.githubusercontent.com/Nicolasuxer1/Signature/feat/ia-signature-generator/resources/logo.png";
   const LOGO_WIDTH = 150; // px

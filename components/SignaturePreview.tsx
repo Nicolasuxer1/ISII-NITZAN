@@ -13,9 +13,9 @@ const generateSignatureHTML = (data: SignatureData) => {
   const brandGreen = "#2dab65";
   const textColor = "#475569";
   
-  const websiteLink = "https://www.greenspec.nl";
+  const websiteLink = "https://www.greenspec.nls";
   // Fixed Greenspec horizontal logo
-  const fixedLogoUrl = "/resources/logo.png";
+  const fixedLogoUrl = "https://cdn.sanity.io/images/1e0st73j/production/68361ba9e6303c7b427ff1f9b9f8d81a68e8a523-150x30.svg";
   const LOGO_WIDTH = 150; // px
   const LOGO_HEIGHT = 32;
 

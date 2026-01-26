@@ -15,7 +15,7 @@ const generateSignatureHTML = (data: SignatureData) => {
   
   const websiteLink = "https://www.greenspec.nls";
   // Fixed Greenspec horizontal logo
-  const fixedLogoUrl = "/public/logo.png";
+  const fixedLogoUrl = "/resources/logo.png";
   const LOGO_WIDTH = 150; // px
   const LOGO_HEIGHT = 32;
 

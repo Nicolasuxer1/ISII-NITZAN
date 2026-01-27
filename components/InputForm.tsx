@@ -11,16 +11,16 @@ const InputForm: React.FC<InputFormProps> = ({ data, onChange }) => {
 
   const fields = [
     { id: 'fullName', label: 'Full Name', icon: 'ri-user-3-line', placeholder: 'e.g. John Doe' },
-    { id: 'position', label: 'Position / Role', icon: 'ri-briefcase-line', placeholder: 'e.g. Marketing Director' },
-    { id: 'phone', label: 'Phone Number', icon: 'ri-phone-line', placeholder: 'e.g. +1 555 000 000' },
-    { id: 'email', label: 'Email Address', icon: 'ri-mail-line', placeholder: 'e.g. user@greenspec.nl' },
+    { id: 'position', label: 'Position / Job Title', icon: 'ri-briefcase-line', placeholder: 'e.g. Sales Director' },
+    { id: 'phone', label: 'Phone Number', icon: 'ri-phone-line', placeholder: 'e.g. +34 600 000 000' },
+    { id: 'email', label: 'Corporate Email', icon: 'ri-mail-line', placeholder: 'e.g. john.doe@greenspec.nl' },
   ];
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, field: 'photoUrl') => {
     const file = e.target.files?.[0];
     if (file) {
-      if (file.size > 2 * 1024 * 1024) {
-        alert("File size is too large. Maximum is 2MB.");
+      if (file.size > 1 * 1024 * 1024) {
+        alert("Image is too heavy. Maximum 1MB.");
         return;
       }
       const reader = new FileReader();
@@ -62,7 +62,7 @@ const InputForm: React.FC<InputFormProps> = ({ data, onChange }) => {
               <i style={{ color: '#2dab65' }} className="ri-linkedin-box-line text-xl"></i>
               <div>
                 <p className="text-sm font-bold text-slate-800">Include LinkedIn?</p>
-                <p className="text-xs text-slate-500">Toggle this to show or hide the LinkedIn profile link.</p>
+                <p className="text-xs text-slate-500">Show or hide your professional profile.</p>
               </div>
             </div>
             <button
@@ -77,7 +77,7 @@ const InputForm: React.FC<InputFormProps> = ({ data, onChange }) => {
             <div className="space-y-1.5 animate-in fade-in slide-in-from-top-2 duration-300">
               <label className="text-xs font-bold text-slate-700 flex items-center gap-2 uppercase tracking-wide">
                 <i style={{ color: '#2dab65' }} className="ri-link-m"></i>
-                Personal LinkedIn URL
+                LinkedIn Profile URL
               </label>
               <input
                 type="text"
@@ -92,29 +92,35 @@ const InputForm: React.FC<InputFormProps> = ({ data, onChange }) => {
 
         {/* Profile Picture Section */}
         <div className="sm:col-span-2 pt-6 border-t border-slate-100">
-          <div className="space-y-2 flex flex-col">
+          <div className="space-y-4 flex flex-col">
             <label className="text-xs font-bold text-slate-800 flex items-center gap-2 uppercase tracking-wider">
               <i style={{ color: '#2dab65' }} className="ri-camera-line"></i>
-              Profile Picture
+              Profile Picture (Mandatory)
             </label>
+            
+            {/*Instructions */}
+            <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 space-y-2">
+              <p className="text-xs font-bold text-blue-900 flex items-center gap-2">
+                <i className="ri-information-line"></i> How to use a hosted image (e.g. Sannity):
+              </p>
+              <ol className="text-[11px] text-blue-800 space-y-1 list-decimal list-inside">
+                <li>Open the image in Sanity preview, then open it in a new tab.</li>
+                <li>Copy the URL.</li>
+                <li>Paste in image field.</li>
+              </ol>
+            </div>
+
             <div className="flex gap-2">
               <input
                 type="text"
                 value={data.photoUrl.startsWith('data:') ? 'Local image uploaded' : data.photoUrl}
                 onChange={(e) => onChange('photoUrl', e.target.value)}
                 className="flex-grow px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs"
-                placeholder="Image URL..."
+                placeholder="Paste your photo URL here (Recommended)..."
               />
-              <button 
-                type="button"
-                onClick={() => photoInputRef.current?.click()} 
-                style={{ color: '#2dab65', backgroundColor: '#eaf7f0' }}
-                className="px-4 py-2 rounded-lg text-xs font-bold hover:bg-[#d5eedf] flex items-center justify-center gap-1 transition-colors whitespace-nowrap"
-              >
-                <i className="ri-upload-2-line"></i> Upload
-              </button>
               <input type="file" ref={photoInputRef} onChange={(e) => handleFileChange(e, 'photoUrl')} accept="image/*" className="hidden" />
             </div>
+            <p className="text-[10px] text-slate-400">Preferably a public HTTPS URL to prevent broken images in some email clients.</p>
           </div>
         </div>
       </div>

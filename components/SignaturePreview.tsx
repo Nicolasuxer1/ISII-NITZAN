@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { SignatureData } from '../types';
 
@@ -12,128 +11,89 @@ const generateSignatureHTML = (data: SignatureData) => {
   const fontFamily = "'Segoe UI', Tahoma, Arial, sans-serif";
   const brandGreen = "#2dab65";
   const textColor = "#475569";
+  const nameColor = "#064e3b";
   
+  const websiteUrl = "greenspec.nl";
   const websiteLink = "https://www.greenspec.nl";
-  // Fixed Greenspec horizontal logo
-  const fixedLogoUrl = "https://raw.githubusercontent.com/Nicolasuxer1/Signature/feat/ia-signature-generator/resources/logo.png";
-  const LOGO_WIDTH = 150; // px
-  const LOGO_HEIGHT = 32;
+  // Logo fijo - Usaremos una versión cuadrada o contenida para respetar el 40x40
+  const fixedLogoUrl = "https://i.ibb.co/3WqP4S1/greenspec-logo-horizontal.png";
 
   const icons = {
     phone: `https://img.icons8.com/material-rounded/32/${brandGreen.replace('#', '')}/phone.png`,
     mail: `https://img.icons8.com/material-rounded/32/${brandGreen.replace('#', '')}/mail.png`,
-    webCircle: `https://img.icons8.com/ios-filled/64/${brandGreen.replace('#', '')}/geography--v1.png`,
-    linkedinCircle: `https://img.icons8.com/ios-filled/64/${brandGreen.replace('#', '')}/linkedin-circled--v1.png`
+    web: `https://img.icons8.com/material-rounded/32/${brandGreen.replace('#', '')}/geography.png`,
+    linkedinBadge: `https://img.icons8.com/ios-filled/32/ffffff/linkedin.png`
   };
 
   return `
-<table cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="background-color: #ffffff; font-family: ${fontFamily}; color: ${textColor}; line-height: 1.2; width: 480px; margin: 0; padding: 15px;">
+<table cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="background-color: #ffffff; font-family: ${fontFamily}; color: ${textColor}; line-height: 1.2; width: 500px; margin: 0; padding: 15px;">
   <tr>
-    <td width="115" style="vertical-align: middle; padding-right: 20px;">
-      ${photoUrl ? `<img src="${photoUrl}" width="100" height="100" style="border-radius: 50%; display: block; object-fit: cover; border: 3px solid ${brandGreen};" alt="${fullName}" />` : ''}
-    </td>
-    
-    <td style="border-left: 2px solid ${brandGreen}; padding-left: 20px; vertical-align: middle;">
-      <table cellpadding="0" cellspacing="0" border="0">
+    <!-- LADO IZQUIERDO: FOTO + LINKEDIN -->
+    <td width="110" style="vertical-align: top; padding-right: 20px;">
+      <table cellpadding="0" cellspacing="0" border="0" style="position: relative;">
         <tr>
-          <td><span style="font-size: 22px; font-weight: 700; color: #064e3b; font-family: ${fontFamily};">${fullName || 'Your Name'}</span></td>
+          <td align="center" style="position: relative;">
+            <!-- Foto Principal -->
+            <div style="width: 100px; height: 100px; border-radius: 50%; overflow: hidden; border: 3px solid ${brandGreen};">
+               <img src="${photoUrl || 'https://i.pravatar.cc/150'}" width="100" height="100" style="display: block; object-fit: cover;" alt="${fullName}" />
+            </div>
+            <!-- Badge LinkedIn (Aproximación para compatibilidad) -->
+            <div style="position: absolute; bottom: 0; right: 5px; background-color: ${brandGreen}; width: 24px; height: 24px; border-radius: 50%; border: 2px solid #ffffff; display: flex; align-items: center; justify-content: center;">
+              <a href="${personalLinkedin || '#'}" target="_blank" style="text-decoration: none; display: block; line-height: 0;">
+                <img src="${icons.linkedinBadge}" width="14" height="14" style="display: block; margin: 4px;" alt="In" />
+              </a>
+            </div>
+          </td>
         </tr>
+      </table>
+    </td>
+
+    <!-- LADO DERECHO: CONTENIDO -->
+    <td style="vertical-align: top;">
+      <!-- BLOQUE SUPERIOR: NOMBRE, ROL Y LOGO -->
+      <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom: 12px;">
         <tr>
-          <td style="padding-bottom: 8px;"><span style="font-size: 14px; color: #64748b; font-family: ${fontFamily};">${position || 'Position'}</span></td>
+          <td style="vertical-align: middle;">
+            <div style="font-size: 22px; font-weight: 700; color: ${nameColor}; font-family: ${fontFamily}; margin-bottom: 2px;">${fullName || 'Sasa Misle'}</div>
+            <div style="font-size: 14px; color: #64748b; font-family: ${fontFamily};">${position || 'Head of Product | Software'}</div>
+          </td>
+          <td width="45" align="right" style="vertical-align: middle;">
+            <img src="${fixedLogoUrl}" width="40" height="40" style="display: block; object-fit: contain; border: 0;" alt="Logo" />
+          </td>
         </tr>
       </table>
 
-      <!-- Contact Info Section with Robust Icon Alignment -->
-        <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 12px;">
-          <tr>
-            ${phone ? `
-              <td style="vertical-align: middle; padding-right: 6px;">
-                <img src="${icons.phone}" width="14" height="14" style="display: block; border: 0;" alt="" />
-              </td>
-              <td
-                style="
-                  vertical-align: middle;
-                  font-size: 13px;
-                  font-family: ${fontFamily};
-                  color: ${textColor};
-                  white-space: nowrap;
-                "
-              >
-                <a
-                  href="tel:${phone}"
-                  style="
-                    text-decoration: none;
-                    color: ${textColor};
-                    white-space: nowrap;
-                    display: inline-block;
-                  "
-                >
-                  ${phone}
-                </a>
-              </td>
-            ` : ''}
-            
-            ${phone && email ? `
-              <td style="vertical-align: middle; padding: 0 10px; font-size: 13px; color: #e2e8f0; font-family: ${fontFamily};">|</td>
-            ` : ''}
-
-            ${email ? `
-              <td style="vertical-align: middle; padding-right: 6px;">
-                <img src="${icons.mail}" width="14" height="14" style="display: block; border: 0;" alt="" />
-              </td>
-              <td
-                style="
-                  vertical-align: middle;
-                  font-size: 13px;
-                  font-family: ${fontFamily};
-                  color: ${textColor};
-                  white-space: nowrap;
-                "
-              >
-                <a
-                  href="mailto:${email}"
-                  style="
-                    text-decoration: none;
-                    color: ${textColor};
-                    white-space: nowrap;
-                    display: inline-block;
-                  "
-                >
-                  ${email}
-                </a>
-              </td>
-            ` : ''}
-          </tr>
-        </table>
-
-
-      <!-- Footer: Logo on left, Socials on right -->
-      <table cellpadding="10" cellspacing="10" border="0" width="100%" style="border-top: 1px solid #e2e8f0; padding-top: 20px;">
+      <!-- BLOQUE INFERIOR: INFO DE CONTACTO APILADA -->
+      <table cellpadding="0" cellspacing="0" border="0">
+        <!-- Teléfono -->
+        ${phone ? `
         <tr>
-          <td align="left" style="vertical-align: middle;">
-            <img 
-              src="${fixedLogoUrl}" 
-              width="${LOGO_WIDTH}" 
-              height="${LOGO_HEIGHT}"
-              style="display: block; border: 0; max-width: ${LOGO_WIDTH}px;"
-              alt="Greenspec"
-            />
+          <td style="vertical-align: middle; padding-bottom: 6px; padding-right: 8px;">
+            <img src="${icons.phone}" width="16" height="16" style="display: block; border: 0;" alt="" />
           </td>
-          <td align="right" style="vertical-align: middle;">
-            <table cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td style="padding-right: 8px;">
-                  <a href="${websiteLink}" target="_blank" style="text-decoration: none;">
-                    <img src="${icons.webCircle}" width="24" height="24" style="display: block; border: 0;" alt="Web" />
-                  </a>
-                </td>
-                <td>
-                  <a href="${personalLinkedin || 'https://linkedin.com'}" target="_blank" style="text-decoration: none;">
-                    <img src="${icons.linkedinCircle}" width="24" height="24" style="display: block; border: 0;" alt="LinkedIn" />
-                  </a>
-                </td>
-              </tr>
-            </table>
+          <td style="vertical-align: middle; padding-bottom: 6px; font-size: 13px; font-family: ${fontFamily}; color: ${textColor};">
+            <a href="tel:${phone}" style="text-decoration: none; color: ${textColor};">${phone}</a>
+          </td>
+        </tr>` : ''}
+        
+        <!-- Email -->
+        ${email ? `
+        <tr>
+          <td style="vertical-align: middle; padding-bottom: 6px; padding-right: 8px;">
+            <img src="${icons.mail}" width="16" height="16" style="display: block; border: 0;" alt="" />
+          </td>
+          <td style="vertical-align: middle; padding-bottom: 6px; font-size: 13px; font-family: ${fontFamily}; color: ${textColor};">
+            <a href="mailto:${email}" style="text-decoration: none; color: ${textColor};">${email}</a>
+          </td>
+        </tr>` : ''}
+
+        <!-- Website -->
+        <tr>
+          <td style="vertical-align: middle; padding-right: 8px;">
+            <img src="${icons.web}" width="16" height="16" style="display: block; border: 0;" alt="" />
+          </td>
+          <td style="vertical-align: middle; font-size: 13px; font-family: ${fontFamily}; color: ${textColor};">
+            <a href="${websiteLink}" target="_blank" style="text-decoration: none; color: ${textColor}; font-weight: 500;">${websiteUrl}</a>
           </td>
         </tr>
       </table>

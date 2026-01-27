@@ -31,12 +31,30 @@ const InputForm: React.FC<InputFormProps> = ({ data, onChange }) => {
 
   return (
     <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-slate-200 space-y-8">
-      <h2 className="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-3">
-        <span style={{ backgroundColor: '#2dab65' }} className="text-white p-1 rounded-lg flex items-center justify-center w-10 h-10">
-          <i className="ri-edit-box-line text-xl"></i>
-        </span>
-        Personal Information
-      </h2>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <h2 className="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-3">
+          <span style={{ backgroundColor: '#2dab65' }} className="text-white p-1 rounded-lg flex items-center justify-center w-10 h-10">
+            <i className="ri-edit-box-line text-xl"></i>
+          </span>
+          Personal Information
+        </h2>
+
+        {/* Signature Type Toggle */}
+        <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200 self-start">
+          <button
+            onClick={() => onChange('signatureType', 'personal')}
+            className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${data.signatureType === 'personal' ? 'bg-white shadow-sm text-[#2dab65]' : 'text-slate-500 hover:text-slate-700'}`}
+          >
+            Personal
+          </button>
+          <button
+            onClick={() => onChange('signatureType', 'department')}
+            className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${data.signatureType === 'department' ? 'bg-white shadow-sm text-[#2dab65]' : 'text-slate-500 hover:text-slate-700'}`}
+          >
+            Department
+          </button>
+        </div>
+      </div>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {fields.map((field) => (
@@ -55,7 +73,7 @@ const InputForm: React.FC<InputFormProps> = ({ data, onChange }) => {
           </div>
         ))}
 
-        {/* LinkedIn Section with Toggle */}
+        {/* LinkedIn Section */}
         <div className="sm:col-span-2 space-y-4 pt-4 border-t border-slate-100">
           <div className="flex items-center justify-between bg-slate-50 p-4 rounded-xl border border-slate-100">
             <div className="flex items-center gap-3">
@@ -116,11 +134,18 @@ const InputForm: React.FC<InputFormProps> = ({ data, onChange }) => {
                 value={data.photoUrl.startsWith('data:') ? 'Local image uploaded' : data.photoUrl}
                 onChange={(e) => onChange('photoUrl', e.target.value)}
                 className="flex-grow px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs"
-                placeholder="Paste your photo URL here (Recommended)..."
+                placeholder="Paste your photo URL here (e.g. Dropbox)..."
               />
+              <button 
+                type="button"
+                onClick={() => photoInputRef.current?.click()} 
+                style={{ color: '#2dab65', backgroundColor: '#eaf7f0' }}
+                className="px-4 py-2 rounded-lg text-xs font-bold hover:bg-[#d5eedf] flex items-center justify-center gap-1 transition-colors whitespace-nowrap"
+              >
+                <i className="ri-upload-2-line"></i> Upload Local
+              </button>
               <input type="file" ref={photoInputRef} onChange={(e) => handleFileChange(e, 'photoUrl')} accept="image/*" className="hidden" />
             </div>
-            <p className="text-[10px] text-slate-400">Preferably a public HTTPS URL to prevent broken images in some email clients.</p>
           </div>
         </div>
       </div>

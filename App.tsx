@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import InputForm from './components/InputForm';
 import SignaturePreview from './components/SignaturePreview';
@@ -9,7 +8,7 @@ const App: React.FC = () => {
     ...INITIAL_DATA,
   });
 
-  const handleDataChange = (field: keyof SignatureData, value: string) => {
+  const handleDataChange = (field: keyof SignatureData, value: string | boolean) => {
     setData(prev => ({ ...prev, [field]: value }));
   };
 

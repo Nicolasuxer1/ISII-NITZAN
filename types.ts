@@ -1,4 +1,3 @@
-
 export interface SignatureData {
   fullName: string;
   position: string;
@@ -6,13 +5,15 @@ export interface SignatureData {
   email: string;
   photoUrl: string;
   personalLinkedin: string;
+  showLinkedin: boolean;
 }
 
 export const INITIAL_DATA: SignatureData = {
-  fullName: "John Doe",
-  position: "Marketing Director",
-  phone: "+1 555 000 000",
-  email: "user@greenspec.nl",
+  fullName: "Nicolás Vargas Galindo",
+  position: "Lead UX / UI Designer",
+  phone: "+57 315 648 3490",
+  email: "nicolas.vargas@greenspec.nl",
   photoUrl: "https://i.pravatar.cc/150?u=johndoe",
   personalLinkedin: "https://www.linkedin.com/in/username",
+  showLinkedin: true,
 };

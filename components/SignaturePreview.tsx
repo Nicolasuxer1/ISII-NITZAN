@@ -6,7 +6,7 @@ interface SignaturePreviewProps {
 }
 
 const generateSignatureHTML = (data: SignatureData) => {
-  const { fullName, position, phone, email, photoUrl, personalLinkedin } = data;
+  const { fullName, position, phone, email, photoUrl, personalLinkedin, showLinkedin } = data;
   
   const fontFamily = "'Segoe UI', Tahoma, Arial, sans-serif";
   const brandGreen = "#2dab65";
@@ -15,63 +15,76 @@ const generateSignatureHTML = (data: SignatureData) => {
   
   const websiteUrl = "greenspec.nl";
   const websiteLink = "https://www.greenspec.nl";
-  // Logo fijo - Usaremos una versión cuadrada o contenida para respetar el 40x40
-  const fixedLogoUrl = "https://i.ibb.co/3WqP4S1/greenspec-logo-horizontal.png";
+  
+  // Use a square logo container as requested
+  const fixedLogoUrl =
+  "https://raw.githubusercontent.com/Nicolasuxer1/Signature/feat/ia-signature-generator/resources/isotipo.jpg";
 
   const icons = {
     phone: `https://img.icons8.com/material-rounded/32/${brandGreen.replace('#', '')}/phone.png`,
     mail: `https://img.icons8.com/material-rounded/32/${brandGreen.replace('#', '')}/mail.png`,
     web: `https://img.icons8.com/material-rounded/32/${brandGreen.replace('#', '')}/geography.png`,
-    linkedinBadge: `https://img.icons8.com/ios-filled/32/ffffff/linkedin.png`
+    linkedinWhite: `https://img.icons8.com/ios-filled/32/ffffff/linkedin.png`
   };
 
   return `
 <table cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="background-color: #ffffff; font-family: ${fontFamily}; color: ${textColor}; line-height: 1.2; width: 500px; margin: 0; padding: 15px;">
   <tr>
-    <!-- LADO IZQUIERDO: FOTO + LINKEDIN -->
-    <td width="110" style="vertical-align: top; padding-right: 20px;">
-      <table cellpadding="0" cellspacing="0" border="0" style="position: relative;">
+    <!-- LEFT SIDE: PHOTO + LINKEDIN STACK (Table-Safe for Outlook) -->
+    <td width="120" style="vertical-align: top; padding-right: 20px;">
+      <table cellpadding="0" cellspacing="0" border="0" width="100%">
         <tr>
-          <td align="center" style="position: relative;">
-            <!-- Foto Principal -->
-            <div style="width: 100px; height: 100px; border-radius: 50%; overflow: hidden; border: 3px solid ${brandGreen};">
-               <img src="${photoUrl || 'https://i.pravatar.cc/150'}" width="100" height="100" style="display: block; object-fit: cover;" alt="${fullName}" />
-            </div>
-            <!-- Badge LinkedIn (Aproximación para compatibilidad) -->
-            <div style="position: absolute; bottom: 0; right: 5px; background-color: ${brandGreen}; width: 24px; height: 24px; border-radius: 50%; border: 2px solid #ffffff; display: flex; align-items: center; justify-content: center;">
-              <a href="${personalLinkedin || '#'}" target="_blank" style="text-decoration: none; display: block; line-height: 0;">
-                <img src="${icons.linkedinBadge}" width="14" height="14" style="display: block; margin: 4px;" alt="In" />
-              </a>
-            </div>
+          <td align="center" style="padding-bottom: 8px;">
+            <!-- Profile Photo -->
+            ${photoUrl ? `
+              <img src="${photoUrl}" width="100" height="100" style="display: block; width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid ${brandGreen};" alt="${fullName}" />
+            ` : `
+              <div style="width: 100px; height: 100px; border-radius: 50%; background-color: #f1f5f9; border: 3px solid ${brandGreen};"></div>
+            `}
           </td>
         </tr>
+        ${showLinkedin ? `
+        <tr>
+          <td align="center">
+            <!-- LinkedIn Pill Badge -->
+            <table cellpadding="0" cellspacing="0" border="0" bgcolor="${brandGreen}" style="background-color: ${brandGreen}; border-radius: 12px;">
+              <tr>
+                <td style="padding: 2px 10px; line-height: 0;">
+                  <a href="${personalLinkedin || '#'}" target="_blank" style="text-decoration: none; display: block;">
+                    <img src="${icons.linkedinWhite}" width="14" height="14" style="display: block; border: 0;" alt="LinkedIn" />
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>` : ''}
       </table>
     </td>
 
-    <!-- LADO DERECHO: CONTENIDO -->
+    <!-- RIGHT SIDE: CONTENT -->
     <td style="vertical-align: top;">
-      <!-- BLOQUE SUPERIOR: NOMBRE, ROL Y LOGO -->
+      <!-- TOP BLOCK: NAME, POSITION AND LOGO -->
       <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom: 12px;">
         <tr>
-          <td style="vertical-align: middle;">
-            <div style="font-size: 22px; font-weight: 700; color: ${nameColor}; font-family: ${fontFamily}; margin-bottom: 2px;">${fullName || 'Sasa Misle'}</div>
-            <div style="font-size: 14px; color: #64748b; font-family: ${fontFamily};">${position || 'Head of Product | Software'}</div>
+          <td style="vertical-align: top;">
+            <div style="font-size: 24px; font-weight: 700; color: ${nameColor}; font-family: ${fontFamily}; margin-bottom: 2px; line-height: 1;">${fullName || 'Your Name'}</div>
+            <div style="font-size: 14px; color: #64748b; font-family: ${fontFamily}; line-height: 1.4;">${position || 'Position / Role'}</div>
           </td>
-          <td width="45" align="right" style="vertical-align: middle;">
-            <img src="${fixedLogoUrl}" width="40" height="40" style="display: block; object-fit: contain; border: 0;" alt="Logo" />
+          <td width="45" align="right" style="vertical-align: top; padding-top: 4px;">
+            <img src="${fixedLogoUrl}" width="40" height="40" style="display: block; width: 40px; height: 40px; border: 0;" alt="Logo" />
           </td>
         </tr>
       </table>
 
-      <!-- BLOQUE INFERIOR: INFO DE CONTACTO APILADA -->
+      <!-- BOTTOM BLOCK: CONTACT INFO LIST -->
       <table cellpadding="0" cellspacing="0" border="0">
-        <!-- Teléfono -->
+        <!-- Phone -->
         ${phone ? `
         <tr>
-          <td style="vertical-align: middle; padding-bottom: 6px; padding-right: 8px;">
-            <img src="${icons.phone}" width="16" height="16" style="display: block; border: 0;" alt="" />
+          <td width="20" style="vertical-align: middle; padding-bottom: 4px;">
+            <img src="${icons.phone}" width="14" height="14" style="display: block; border: 0;" alt="" />
           </td>
-          <td style="vertical-align: middle; padding-bottom: 6px; font-size: 13px; font-family: ${fontFamily}; color: ${textColor};">
+          <td style="vertical-align: middle; padding-bottom: 4px; font-size: 13px; font-family: ${fontFamily}; color: ${textColor};">
             <a href="tel:${phone}" style="text-decoration: none; color: ${textColor};">${phone}</a>
           </td>
         </tr>` : ''}
@@ -79,18 +92,18 @@ const generateSignatureHTML = (data: SignatureData) => {
         <!-- Email -->
         ${email ? `
         <tr>
-          <td style="vertical-align: middle; padding-bottom: 6px; padding-right: 8px;">
-            <img src="${icons.mail}" width="16" height="16" style="display: block; border: 0;" alt="" />
+          <td width="20" style="vertical-align: middle; padding-bottom: 4px;">
+            <img src="${icons.mail}" width="14" height="14" style="display: block; border: 0;" alt="" />
           </td>
-          <td style="vertical-align: middle; padding-bottom: 6px; font-size: 13px; font-family: ${fontFamily}; color: ${textColor};">
+          <td style="vertical-align: middle; padding-bottom: 4px; font-size: 13px; font-family: ${fontFamily}; color: ${textColor};">
             <a href="mailto:${email}" style="text-decoration: none; color: ${textColor};">${email}</a>
           </td>
         </tr>` : ''}
 
         <!-- Website -->
         <tr>
-          <td style="vertical-align: middle; padding-right: 8px;">
-            <img src="${icons.web}" width="16" height="16" style="display: block; border: 0;" alt="" />
+          <td width="20" style="vertical-align: middle;">
+            <img src="${icons.web}" width="14" height="14" style="display: block; border: 0;" alt="" />
           </td>
           <td style="vertical-align: middle; font-size: 13px; font-family: ${fontFamily}; color: ${textColor};">
             <a href="${websiteLink}" target="_blank" style="text-decoration: none; color: ${textColor}; font-weight: 500;">${websiteUrl}</a>

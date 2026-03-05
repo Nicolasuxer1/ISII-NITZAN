@@ -10,12 +10,12 @@ export interface SignatureData {
 }
 
 export const INITIAL_DATA: SignatureData = {
-  fullName: "Julian Salazar",
-  position: "Procurement",
-  phone: "+49 176 82142807",
-  email: "julian.salazar@greenspec.nl",
-  photoUrl: "https://i.pravatar.cc/150?u=julian",
-  personalLinkedin: "https://www.linkedin.com/in/username",
+  fullName: "Nicolas Vargas",
+  position: "Technical Director",
+  phone: "+41 44 123 4567",
+  email: "n.vargas@isii-nitzan.swiss",
+  photoUrl: "https://i.pravatar.cc/150?u=nicolas",
+  personalLinkedin: "https://www.linkedin.com/in/nicolasvargas",
   showLinkedin: true,
   signatureType: 'personal',
 };

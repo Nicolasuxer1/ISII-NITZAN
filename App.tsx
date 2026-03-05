@@ -13,17 +13,20 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-black text-white flex flex-col font-sans">
       {/* Header */}
-      <header className="bg-white border-b border-slate-200 py-6">
+      <header className="bg-[#0a0a0a] border-b border-white/10 py-6">
         <div className="container mx-auto px-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div style={{ backgroundColor: '#2dab65' }} className="w-10 h-10 rounded-xl shadow-lg flex items-center justify-center text-white font-black text-2xl">
-              G
-            </div>
+          <div className="flex items-center gap-4">
+            <img
+              src="https://static.wixstatic.com/media/21bdd8_afed04f284154ed2987ef4d27914549d~mv2.png"
+              alt="isii Nitzan Logo"
+              className="h-10 w-auto"
+            />
+            <div className="h-8 w-[1px] bg-white/20 hidden sm:block"></div>
             <div>
-              <h1 className="text-xl font-bold text-slate-900 tracking-tight">Greenspec</h1>
-              <p style={{ color: '#2dab65' }} className="text-xs font-semibold uppercase tracking-wider">Signature Generator</p>
+              <h1 className="text-xl font-bold text-white tracking-widest uppercase">isii Nitzan</h1>
+              <p style={{ color: '#DF2929' }} className="text-[10px] font-black uppercase tracking-[0.2em]">Signature Generator</p>
             </div>
           </div>
         </div>
@@ -33,20 +36,20 @@ const App: React.FC = () => {
       <main className="flex-grow container mx-auto px-4 py-8 md:py-12">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">
-              <span style={{ color: '#2dab65' }} className="underline decoration-[#2dab65]/20 underline-offset-8">Greenspec</span> Email Signature Generator
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 uppercase tracking-tighter">
+              <span style={{ color: '#DF2929' }}>Precision</span> Email Signatures
             </h2>
-            <p className="text-slate-500 max-w-xl mx-auto text-lg">
-              Create your standardized professional signature in seconds.
+            <p className="text-white/50 max-w-xl mx-auto text-lg font-light">
+              Crafting professional identities for the Swiss luxury water technology.
             </p>
           </div>
 
-          <div className="flex flex-col gap-8 mb-16">
+          <div className="flex flex-col gap-12 mb-16">
             {/* Personal Information Form - Always Top */}
             <div className="w-full">
               <InputForm data={data} onChange={handleDataChange} />
             </div>
-            
+
             {/* Signature Preview - Always Bottom */}
             <div className="w-full">
               <SignaturePreview data={data} />
@@ -54,26 +57,26 @@ const App: React.FC = () => {
           </div>
 
           {/* Instructions Section */}
-          <section className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
-            <h3 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-              <i style={{ color: '#2dab65' }} className="ri-list-check-3"></i>
-              How to use this tool?
+          <section className="bg-[#0a0a0a] rounded-3xl p-10 border border-white/5 shadow-2xl">
+            <h3 className="text-2xl font-black text-white mb-8 flex items-center gap-4 uppercase tracking-widest">
+              <i style={{ color: '#DF2929' }} className="ri-list-check-3"></i>
+              Application Guide
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="space-y-3">
-                <div style={{ backgroundColor: '#eaf7f0', color: '#2dab65' }} className="w-10 h-10 rounded-full flex items-center justify-center font-bold">1</div>
-                <h4 className="font-bold text-slate-800">Fill your information</h4>
-                <p className="text-sm text-slate-500">Enter your professional details. The preview updates automatically as you type.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+              <div className="space-y-4">
+                <div style={{ backgroundColor: '#DF2929', color: '#ffffff' }} className="w-10 h-10 rounded-full flex items-center justify-center font-black shadow-[0_0_20px_rgba(223,41,41,0.4)]">1</div>
+                <h4 className="font-bold text-white uppercase tracking-wider">Parameters</h4>
+                <p className="text-sm text-white/40 leading-relaxed">Enter your professional metrics. The interface reflects changes in real-time.</p>
               </div>
-              <div className="space-y-3">
-                <div style={{ backgroundColor: '#eaf7f0', color: '#2dab65' }} className="w-10 h-10 rounded-full flex items-center justify-center font-bold">2</div>
-                <h4 className="font-bold text-slate-800">Copy the signature</h4>
-                <p className="text-sm text-slate-500">Click the <strong>"Copy Signature"</strong> button. The formatted signature is saved to your clipboard.</p>
+              <div className="space-y-4">
+                <div style={{ backgroundColor: '#DF2929', color: '#ffffff' }} className="w-10 h-10 rounded-full flex items-center justify-center font-black shadow-[0_0_20px_rgba(223,41,41,0.4)]">2</div>
+                <h4 className="font-bold text-white uppercase tracking-wider">Export</h4>
+                <p className="text-sm text-white/40 leading-relaxed">Trigger the <strong>"Copy Signature"</strong> command to capture the source to your clipboard.</p>
               </div>
-              <div className="space-y-3">
-                <div style={{ backgroundColor: '#eaf7f0', color: '#2dab65' }} className="w-10 h-10 rounded-full flex items-center justify-center font-bold">3</div>
-                <h4 className="font-bold text-slate-800">Paste in Outlook</h4>
-                <p className="text-sm text-slate-500">Open your email settings and use <strong>Ctrl+V</strong> to paste the signature directly.</p>
+              <div className="space-y-4">
+                <div style={{ backgroundColor: '#DF2929', color: '#ffffff' }} className="w-10 h-10 rounded-full flex items-center justify-center font-black shadow-[0_0_20px_rgba(223,41,41,0.4)]">3</div>
+                <h4 className="font-bold text-white uppercase tracking-wider">Integration</h4>
+                <p className="text-sm text-white/40 leading-relaxed">Deploy into Outlook using <strong>Cmd+V</strong>. The syntax is optimized for all protocols.</p>
               </div>
             </div>
           </section>
@@ -81,14 +84,15 @@ const App: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 py-8">
+      <footer className="bg-black border-t border-white/10 py-10">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-slate-400 text-sm">
-            &copy; {new Date().getFullYear()} Greenspec Ltd. Internal Use Only.
+          <p className="text-white/20 text-[10px] uppercase tracking-[0.3em] font-medium">
+            &copy; {new Date().getFullYear()} isii Nitzan. All rights reserved. Industrial Grade.
           </p>
         </div>
       </footer>
     </div>
+
   );
 };
 

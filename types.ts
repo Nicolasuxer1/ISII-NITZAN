@@ -13,7 +13,7 @@ export const INITIAL_DATA: SignatureData = {
   position: "Technical Director",
   phone: "+41 44 123 4567",
   email: "n.vargas@isii-nitzan.swiss",
-  photoUrl: "https://i.pravatar.cc/150?u=nicolas",
+  photoUrl: "https://cdn.sanity.io/images/1e0st73j/production/d96987d8eb712f280a375254685348e477810087-200x200.jpg?w=2000&fit=max&auto=format&dpr=2",
   personalLinkedin: "https://www.linkedin.com/in/nicolasvargas",
   showLinkedin: true,
 };

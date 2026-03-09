@@ -38,22 +38,6 @@ const InputForm: React.FC<InputFormProps> = ({ data, onChange }) => {
           </span>
           Profile Analytics
         </h2>
-
-        {/* Signature Type Toggle */}
-        <div className="flex bg-white/5 p-1.5 rounded-2xl border border-white/10 self-start">
-          <button
-            onClick={() => onChange('signatureType', 'personal')}
-            className={`px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${data.signatureType === 'personal' ? 'bg-[#DF2929] shadow-lg text-white' : 'text-white/30 hover:text-white/60'}`}
-          >
-            Personal
-          </button>
-          <button
-            onClick={() => onChange('signatureType', 'department')}
-            className={`px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${data.signatureType === 'department' ? 'bg-[#DF2929] shadow-lg text-white' : 'text-white/30 hover:text-white/60'}`}
-          >
-            Dept
-          </button>
-        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">

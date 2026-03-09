@@ -6,7 +6,6 @@ export interface SignatureData {
   photoUrl: string;
   personalLinkedin: string;
   showLinkedin: boolean;
-  signatureType: 'personal' | 'department';
 }
 
 export const INITIAL_DATA: SignatureData = {
@@ -17,5 +16,4 @@ export const INITIAL_DATA: SignatureData = {
   photoUrl: "https://i.pravatar.cc/150?u=nicolas",
   personalLinkedin: "https://www.linkedin.com/in/nicolasvargas",
   showLinkedin: true,
-  signatureType: 'personal',
 };

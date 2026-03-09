@@ -103,12 +103,12 @@ const generateSignatureHTML = (data: SignatureData) => {
                   <div style="font-family: ${fontFamily}; font-size: 10px; color: ${brandRed}; line-height: 1.2; margin: 4px 0 0 0; padding: 0; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">${position || 'TECHNICAL DIRECTOR'}</div>
                 </td>
                 <!-- ADAPTIVE LOGO -->
-                <td width="80" align="right" valign="top" style="width: 80px;">
+                <td width="100" align="right" valign="top" style="width: 100px;">
                   <!-- Dark Logo for Light Themes -->
-                  <img src="${logoBlackUrl}" height="42" border="0" class="logo-dark" style="display: block; height: 42px; width: auto;" alt="isii Nitzan" />
+                  <img src="${logoBlackUrl}" height="52" border="0" class="logo-dark" style="display: block; height: 52px; width: auto;" alt="isii Nitzan" />
                   <!-- Light Logo for Dark Themes -->
                   <!--[if !mso]><!-->
-                  <img src="${logoWhiteUrl}" height="42" border="0" class="logo-light" style="display: none; height: 42px; width: auto;" alt="isii Nitzan" />
+                  <img src="${logoWhiteUrl}" height="52" border="0" class="logo-light" style="display: none; height: 52px; width: auto;" alt="isii Nitzan" />
                   <!--<![endif]-->
                 </td>
               </tr>

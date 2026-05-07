@@ -11,12 +11,12 @@ const generateSignatureHTML = (data: SignatureData) => {
   const fontFamily = "Segoe UI, Tahoma, Arial, sans-serif";
   const brandRed = "#DF2929";
   // Default Light Theme Colors (Improved Contrast)
-  const lightText = "#222222";
-  const lightMuted = "#666666";
+  const lightText = "#1a1a1a";
+  const lightMuted = "#475569";
   const lightBorder = "#d0d0d0";
   // Dark Theme Colors (Improved Contrast)
   const darkText = "#ffffff";
-  const darkMuted = "#aaaaaa";
+  const darkMuted = "#94a3b8";
   const darkBorder = "#444444";
 
   const websiteUrl = "isii-nitzan.swiss";
@@ -29,6 +29,7 @@ const generateSignatureHTML = (data: SignatureData) => {
     phone: `https://img.icons8.com/material-rounded/24/DF2929/phone.png`,
     mail: `https://img.icons8.com/material-rounded/24/DF2929/mail.png`,
     web: `https://img.icons8.com/material-rounded/24/DF2929/geography.png`,
+    address: `https://img.icons8.com/material-rounded/24/DF2929/marker.png`,
   };
 
   return `
@@ -39,6 +40,7 @@ const generateSignatureHTML = (data: SignatureData) => {
   .sig-border { border-color: ${lightBorder} !important; border-style: solid !important; }
   .logo-dark { display: block !important; }
   .logo-light { display: none !important; }
+  .sig-bg { background-color: #ffffff !important; }
 
   /* Dark Theme Overrides */
   @media (prefers-color-scheme: dark) {
@@ -47,6 +49,7 @@ const generateSignatureHTML = (data: SignatureData) => {
     .sig-border { border-color: ${darkBorder} !important; border-style: solid !important; }
     .logo-dark { display: none !important; }
     .logo-light { display: block !important; }
+    .sig-bg { background-color: #000000 !important; }
   }
 
   /* Outlook/Gmail Dark Mode Overrides */
@@ -55,110 +58,116 @@ const generateSignatureHTML = (data: SignatureData) => {
   [data-ogsc] .sig-border { border-color: ${darkBorder} !important; border-style: solid !important; }
   [data-ogsc] .logo-dark { display: none !important; }
   [data-ogsc] .logo-light { display: block !important; }
+  [data-ogsc] .sig-bg { background-color: #000000 !important; }
 </style>
 
-<table cellpadding="0" cellspacing="0" border="0" style="margin: 0; padding: 0; width: 480px; min-width: 480px; table-layout: fixed; -webkit-text-size-adjust: none; font-family: ${fontFamily};">
+<table cellpadding="0" cellspacing="0" border="0" class="sig-bg" style="background-color: #ffffff; margin: 0; padding: 0; width: 440px; min-width: 440px; table-layout: fixed; -webkit-text-size-adjust: none;">
   <tr>
-    <td style="padding: 24px; width: 432px;">
+    <td style="padding: 10px; width: 420px;">
       <table cellpadding="0" cellspacing="0" border="0" width="100%" style="width: 100%; border-collapse: collapse;">
         <tr>
-          <!-- LEFT: PHOTO & LINKEDIN -->
-          <td width="80" valign="top" align="left" style="width: 80px;">
-            ${photoUrl ? `
-              <img src="${photoUrl}" width="80" height="80" border="0" style="display: block; width: 80px; height: 80px; border-radius: 20px; object-fit: cover; filter: grayscale(10%); border: 3px solid ${brandRed};" alt="${fullName}" />
-            ` : `
-              <table cellpadding="0" cellspacing="0" border="0" width="80" height="80" bgcolor="#f5f5f5" style="border: 3px solid ${brandRed}; border-radius: 20px; width: 80px; height: 80px;">
-                <tr><td align="center" valign="middle" style="color: ${brandRed}; font-family: ${fontFamily}; font-size: 24px; font-weight: bold;">IN</td></tr>
-              </table>
-            `}
-            
-            ${showLinkedin ? `
-            <table cellpadding="0" cellspacing="0" border="0" width="80" style="width: 80px; margin-top: 10px;">
+          <!-- LEFT COLUMN: PHOTO + LINKEDIN -->
+          <td width="75" valign="top" align="center" style="width: 75px;">
+            <table cellpadding="0" cellspacing="0" border="0" width="75" style="width: 75px;">
+              <tr>
+                <td align="center" style="padding-bottom: 6px;">
+                  <!-- Profile Photo -->
+                  ${photoUrl ? `
+                    <img src="${photoUrl}" width="70" height="70" border="0" style="display: block; width: 70px; height: 70px; border-radius: 35px; object-fit: cover;" alt="${fullName || 'Photo'}" />
+                  ` : `
+                    <table cellpadding="0" cellspacing="0" border="0" width="70" height="70" bgcolor="#f5f5f5" style="border-radius: 35px; width: 70px; height: 70px;">
+                      <tr><td align="center" valign="middle" class="sig-text" style="font-family: ${fontFamily}; font-size: 24px; font-weight: bold;">IN</td></tr>
+                    </table>
+                  `}
+                </td>
+              </tr>
+              
+              ${showLinkedin ? `
               <tr>
                 <td align="center">
-                  <a href="${personalLinkedin || '#'}" target="_blank" style="text-decoration: none; display: inline-block;">
-                    <table cellpadding="0" cellspacing="0" border="0" width="28" height="28" bgcolor="${brandRed}" style="background-color: ${brandRed}; border-radius: 14px; width: 28px; height: 28px;">
-                      <tr>
-                        <td align="center" valign="middle">
-                          <img src="https://img.icons8.com/ios-filled/24/ffffff/linkedin.png" width="14" height="14" border="0" style="display: block; width: 14px; height: 14px;" alt="IN" />
-                        </td>
-                      </tr>
-                    </table>
-                  </a>
-                </td>
-              </tr>
-            </table>` : ''}
-          </td>
-
-          <!-- VERTICAL DIVIDER -->
-          <td width="24" style="width:24px;border-right:1px solid #d0d0d0;font-size:1px;line-height:1px;">&nbsp;</td>
-          <td width="24" style="width: 24px; font-size: 1px; line-height: 1px;">&nbsp;</td>
-
-          <!-- RIGHT: DATA & LOGO -->
-          <td valign="top" style="text-align: left;">
-            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="width: 100%;">
-              <tr>
-                <td valign="top">
-                  <div class="sig-text" style="font-family: ${fontFamily}; font-size: 20px; font-weight: 900; color: ${lightText}; line-height: 1; margin: 0; padding: 0; text-transform: uppercase; letter-spacing: 1px;">${fullName || 'NAME SURNAME'}</div>
-                  <div style="font-family: ${fontFamily}; font-size: 10px; color: ${brandRed}; line-height: 1.2; margin: 4px 0 0 0; padding: 0; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">${position || 'TECHNICAL DIRECTOR'}</div>
-                </td>
-                <!-- ADAPTIVE LOGO -->
-                <td width="100" align="right" valign="top" style="width: 100px;">
-                  <!-- Dark Logo for Light Themes -->
-                  <img src="${logoBlackUrl}" height="52" border="0" class="logo-dark" style="display: block; height: 52px; width: auto;" alt="isii Nitzan" />
-                  <!-- Light Logo for Dark Themes -->
-                  <!--[if !mso]><!-->
-                  <img src="${logoWhiteUrl}" height="52" border="0" class="logo-light" style="display: none; height: 52px; width: auto;" alt="isii Nitzan" />
-                  <!--<![endif]-->
-                </td>
-              </tr>
-              <tr><td height="16" style="font-size: 1px; line-height: 1px;">&nbsp;</td></tr>
-              <tr>
-                <td colspan="2">
-                  <table cellpadding="0" cellspacing="0" border="0">
-                    ${phone ? `
+                  <!-- LinkedIn Pill -->
+                  <table cellpadding="0" cellspacing="0" border="0" bgcolor="${brandRed}" style="background-color: ${brandRed}; border-radius: 8px;">
                     <tr>
-                      <td width="20" valign="middle" style="padding-bottom: 4px; width: 20px;">
-                        <img src="${icons.phone}" width="12" height="12" border="0" style="display: block;" alt="P" />
-                      </td>
-                      <td class="sig-muted" style="font-family: ${fontFamily}; font-size: 11px; color: ${lightMuted}; padding-bottom: 4px; line-height: 1;">
-                        <a href="tel:${phone}" class="sig-muted" style="text-decoration: none; color: ${lightMuted}; white-space: nowrap;">${phone}</a>
-                      </td>
-                    </tr>` : ''}
-                    ${email ? `
-                    <tr>
-                      <td width="20" valign="middle" style="padding-bottom: 4px; width: 20px;">
-                        <img src="${icons.mail}" width="12" height="12" border="0" style="display: block;" alt="E" />
-                      </td>
-                      <td class="sig-muted" style="font-family: ${fontFamily}; font-size: 11px; color: ${lightMuted}; padding-bottom: 4px; line-height: 1;">
-                        <a href="mailto:${email}" class="sig-muted" style="text-decoration: none; color: ${lightMuted}; white-space: nowrap;">${email}</a>
-                      </td>
-                    </tr>` : ''}
-                    <tr>
-                      <td width="20" valign="middle" style="width: 20px;">
-                        <img src="${icons.web}" width="12" height="12" border="0" style="display: block;" alt="W" />
-                      </td>
-                      <td class="sig-text" style="font-family: ${fontFamily}; font-size: 11px; color: ${lightText}; line-height: 1;">
-                        <a href="${websiteLink}" target="_blank" class="sig-text" style="text-decoration: none; color: ${lightText}; font-weight: 700; white-space: nowrap;">${websiteUrl.toUpperCase()}</a>
+                      <td style="padding: 2px 6px; line-height: 0;">
+                        <a href="${personalLinkedin || '#'}" target="_blank" style="text-decoration: none;">
+                          <img src="https://img.icons8.com/ios-filled/24/ffffff/linkedin.png" width="10" height="10" border="0" style="display: block; border: 0;" alt="IN" />
+                        </a>
                       </td>
                     </tr>
                   </table>
                 </td>
               </tr>
+              ` : ''}
             </table>
           </td>
-        </tr>
 
-        <!-- ADAPTIVE HORIZONTAL DIVIDER AND ADDRESS -->
-        <tr>
-          <td colspan="4" style="padding-top: 16px;">
+          <!-- SYMMETRIC DIVIDER -->
+          <td width="15" style="width: 15px;"></td>
+          <td width="1" bgcolor="${brandRed}" style="font-size: 1px; line-height: 1px; width: 1px;">&nbsp;</td>
+          <td width="15" style="width: 15px;"></td>
+
+          <!-- RIGHT COLUMN: DATA -->
+          <td valign="top" style="text-align: left;">
             <table cellpadding="0" cellspacing="0" border="0" width="100%" style="width: 100%;">
               <tr>
-  <td height="1" style="height:1px;background-color:#d0d0d0;font-size:1px;line-height:1px;">&nbsp;</td>
-</tr>
-              <tr>
-                <td class="sig-muted" style="padding-top: 10px; font-family: ${fontFamily}; font-size: 10px; color: ${lightMuted}; line-height: 1.2; text-align: left;">
-                  Via Cremignone 4C, 6924 Sorengo, Switzerland
+                <!-- LEFT CONTENT: Name, Position, Contacts -->
+                <td valign="top" style="text-align: left;">
+                  <div class="sig-text" style="font-family: ${fontFamily}; font-size: 17px; font-weight: 700; color: ${lightText}; line-height: 1; margin: 0; padding: 0;">${fullName || 'Name Surname'}</div>
+                  <div class="sig-muted" style="font-family: ${fontFamily}; font-size: 11px; color: ${lightMuted}; line-height: 1.1; margin: 0; padding: 0;">${position || 'Position'}</div>
+                  
+                  <!-- Spacer -->
+                  <div style="height: 8px; line-height: 8px; font-size: 8px;">&nbsp;</div>
+
+                  <table cellpadding="0" cellspacing="0" border="0">
+                    <!-- Phone -->
+                    ${phone ? `
+                    <tr>
+                      <td width="16" valign="middle" style="padding-bottom: 1px; width: 16px;">
+                        <img src="${icons.phone}" width="11" height="11" border="0" style="display: block;" alt="P" />
+                      </td>
+                      <td class="sig-muted" style="font-family: ${fontFamily}; font-size: 11px; color: ${lightMuted}; padding-bottom: 1px; line-height: 1;">
+                        <a href="tel:${phone}" class="sig-muted" style="text-decoration: none; color: ${lightMuted}; white-space: nowrap;">${phone}</a>
+                      </td>
+                    </tr>
+                    ` : ''}
+                    <!-- Email -->
+                    ${email ? `
+                    <tr>
+                      <td width="16" valign="middle" style="padding-bottom: 1px; width: 16px;">
+                        <img src="${icons.mail}" width="11" height="11" border="0" style="display: block;" alt="E" />
+                      </td>
+                      <td class="sig-muted" style="font-family: ${fontFamily}; font-size: 11px; color: ${lightMuted}; padding-bottom: 1px; line-height: 1;">
+                        <a href="mailto:${email}" class="sig-muted" style="text-decoration: none; color: ${lightMuted}; white-space: nowrap;">${email}</a>
+                      </td>
+                    </tr>
+                    ` : ''}
+                    <!-- Web -->
+                    <tr>
+                      <td width="16" valign="middle" style="padding-bottom: 1px; width: 16px;">
+                        <img src="${icons.web}" width="11" height="11" border="0" style="display: block;" alt="W" />
+                      </td>
+                      <td class="sig-muted" style="font-family: ${fontFamily}; font-size: 11px; color: ${lightMuted}; padding-bottom: 1px; line-height: 1;">
+                        <a href="${websiteLink}" target="_blank" class="sig-muted" style="text-decoration: none; color: ${lightMuted}; font-weight: 600; white-space: nowrap;">${websiteUrl}</a>
+                      </td>
+                    </tr>
+                    <!-- Address -->
+                    <tr>
+                      <td width="16" valign="middle" style="width: 16px;">
+                        <img src="${icons.address}" width="11" height="11" border="0" style="display: block;" alt="A" />
+                      </td>
+                      <td class="sig-muted" style="font-family: ${fontFamily}; font-size: 11px; color: ${lightMuted}; line-height: 1;">
+                        <span class="sig-muted" style="color: ${lightMuted}; white-space: nowrap;">Via Cremignone 4C, 6924 Sorengo, Switzerland</span>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+
+                <!-- RIGHT CONTENT: Logo -->
+                <td width="30" align="right" valign="top" style="width: 30px;">
+                  <img src="${logoBlackUrl}" width="30" height="30" border="0" class="logo-dark" style="display: block; width: 30px; height: 30px; max-width: none; object-fit: contain;" alt="Logo" />
+                  <!--[if !mso]><!-->
+                  <img src="${logoWhiteUrl}" width="30" height="30" border="0" class="logo-light" style="display: none; width: 30px; height: 30px; max-width: none; object-fit: contain;" alt="Logo" />
+                  <!--<![endif]-->
                 </td>
               </tr>
             </table>
